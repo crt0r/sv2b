@@ -1,7 +1,7 @@
 {
   "name": "secret_vars_to_base64",
   "version": "1.0.0",
-  "description": "",
+  "description": "Convert Kubernetes Secret's config file variables to Base64 in batch mode.",
   "type": "module",
   "main": "index.js",
   "scripts": {

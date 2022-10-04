@@ -1,1 +1,1 @@
-# secret_vars_to_base64
+# __secret_vars_to_base64__ - Convert Kubernetes Secrets' config files variables to Base64 in batch mode.
