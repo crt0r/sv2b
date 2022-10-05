@@ -22,7 +22,7 @@ if (!fileName || !existsSync(fileName)) {
     exit(1);
 }
 
-const regex___varToReplace = "\\s+#-.+$";
+const regex___varToReplace = '\\s+#-.+$';
 
 try {
     var vars = (await $`grep -Po ${ regex___varToReplace } ${ fileName }`)
