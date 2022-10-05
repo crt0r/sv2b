@@ -1,11 +1,11 @@
 {
-  "name": "secret_vars_to_base64",
+  "name": "sv2b",
   "version": "1.0.0",
   "description": "Convert Kubernetes Secret's config file variables to Base64 in batch mode.",
   "type": "module",
   "main": "index.js",
-  "scripts": {
-    "conv": "node index.js"
+  "bin": {
+    "conv": "./index.js"
   },
   "author": "Timofey Chuchkanov",
   "license": "MIT",

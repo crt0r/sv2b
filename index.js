@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 // MIT License
 // Copyright (c) 2022 Timofey Chuchkanov
 
@@ -7,7 +9,13 @@ import { existsSync } from 'fs';
 
 $.verbose = false;
 
-const fileName = argv[2];
+const arg = argv[2]
+const fileName = arg;
+
+if (arg == '--help' || arg == '-h') {
+    console.log('Usage:\n\tsv2b <arg>\n, where arg is either `-h`, `--help` or a file name.');
+    exit(0);
+}
 
 if (!fileName || !existsSync(fileName)) {
     console.log(`File \`${ fileName ? fileName : '' }\` not found!`);
@@ -15,11 +23,17 @@ if (!fileName || !existsSync(fileName)) {
 }
 
 const regex___varToReplace = "\\s+#-.+$";
-const vars = (await $`grep -Po ${ regex___varToReplace } ${ fileName }`)
-    .stdout
-    .split('\n')
-    .filter(e => e ? e : false)
-    .map(e => e.trim());
+
+try {
+    var vars = (await $`grep -Po ${ regex___varToReplace } ${ fileName }`)
+        .stdout
+        .split('\n')
+        .filter(e => e ? e : false)
+        .map(e => e.trim());
+} catch(e) {
+    console.log('Nothing to convert!');
+    exit(0);
+}
     
 const varsClean = vars.map(e => e.replace('#-', ''));
 const varsBase64 = (await convertVarsToBase64(varsClean)).map(e => e.replace('\n', ''));
